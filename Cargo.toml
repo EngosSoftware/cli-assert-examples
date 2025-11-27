@@ -5,7 +5,7 @@ resolver = "2"
 members = [
     "examples/example-001",
     "examples/example-002"
-, "examples/example-003", "examples/example-004"]
+    , "examples/example-003", "examples/example-004", "examples/example-005"]
 
 [workspace.package]
 version = "0.0.0"
@@ -16,4 +16,4 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-cli-assert = { path = "../cli-assert" }
+cli-assert = "0.1.1"

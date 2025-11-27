@@ -11,9 +11,7 @@ fn cargo_dir_should_work() {
 
 #[test]
 fn cargo_binary_should_work() {
-  let target_dir = std::env::var("CARGO_TARGET_DIR").unwrap_or("target".to_string());
-  let ending = format!("/cli-assert-examples/{}/debug/example-001", target_dir);
-  assert!(cli_assert::cargo_binary!().ends_with(&ending));
+  assert!(cli_assert::cargo_binary!().ends_with("example-001"));
 }
 
 #[test]

@@ -10,12 +10,12 @@ tasks:
   build:
     desc: Builds in debug mode
     cmds:
-      - cmd: cargo +stable build --workspace
+      - cmd: cargo build --workspace
 
   build-custom:
     desc: Builds in debug mode
     cmds:
-      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo +stable build --workspace
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo build --workspace
 
   clean:
     desc: Cleans all targets
@@ -26,29 +26,41 @@ tasks:
   clippy:
     desc: Runs clippy for all targets
     cmds:
-      - cmd: cargo +stable clippy --all-targets --workspace
+      - cmd: cargo clippy --all-targets --workspace
+
+  cov:
+    desc: Generates the code coverage report
+    cmds:
+      - cmd: cargo llvm-cov clean
+      - cmd: cargo llvm-cov --no-cfg-coverage --dep-coverage cli-assert
+
+  cov-html:
+    desc: Generates the code coverage report
+    cmds:
+      - cmd: cargo llvm-cov clean
+      - cmd: cargo llvm-cov --no-cfg-coverage --dep-coverage cli-assert --html --open
 
   fmt:
     desc: Runs code formatter
     cmds:
-      - cmd: cargo +nightly fmt
+      - cmd: cargo fmt
 
   test:
     desc: Runs tests in debug mode
     cmds:
-      - cmd: cargo +stable test --workspace
+      - cmd: cargo test --workspace
 
   testn:
     desc: Runs tests in debug mode
     cmds:
-      - cmd: cargo +stable nextest run --workspace
+      - cmd: cargo nextest run --workspace
 
   test-custom:
     desc: Runs tests in debug mode with custom output directory
     cmds:
-      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo +stable test --workspace
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo test --workspace
 
   testn-custom:
     desc: Runs tests in debug mode with custom output directory
     cmds:
-      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} +stable nextest run --workspace
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} nextest run --workspace
