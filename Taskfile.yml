@@ -1,0 +1,54 @@
+version: '3'
+
+silent: true
+
+vars:
+  CUSTOM_TARGET_DIR: target-custom
+
+tasks:
+
+  build:
+    desc: Builds in debug mode
+    cmds:
+      - cmd: cargo +stable build --workspace
+
+  build-custom:
+    desc: Builds in debug mode
+    cmds:
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo +stable build --workspace
+
+  clean:
+    desc: Cleans all targets
+    cmds:
+      - cmd: cargo clean
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo clean
+
+  clippy:
+    desc: Runs clippy for all targets
+    cmds:
+      - cmd: cargo +stable clippy --all-targets --workspace
+
+  fmt:
+    desc: Runs code formatter
+    cmds:
+      - cmd: cargo +nightly fmt
+
+  test:
+    desc: Runs tests in debug mode
+    cmds:
+      - cmd: cargo +stable test --workspace
+
+  testn:
+    desc: Runs tests in debug mode
+    cmds:
+      - cmd: cargo +stable nextest run --workspace
+
+  test-custom:
+    desc: Runs tests in debug mode with custom output directory
+    cmds:
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} cargo +stable test --workspace
+
+  testn-custom:
+    desc: Runs tests in debug mode with custom output directory
+    cmds:
+      - cmd: CARGO_TARGET_DIR={{.CUSTOM_TARGET_DIR}} +stable nextest run --workspace

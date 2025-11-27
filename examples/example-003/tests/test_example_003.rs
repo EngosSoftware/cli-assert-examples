@@ -1,0 +1,91 @@
+#[test]
+fn cargo_package_should_work() {
+  assert_eq!("example-003", cli_assert::cargo_package!());
+}
+
+#[test]
+fn cargo_binary_should_work() {
+  let target_dir = std::env::var("CARGO_TARGET_DIR").unwrap_or("target".to_string());
+  let ending = format!("/cli-assert-examples/{}/debug/example-003", target_dir);
+  assert!(cli_assert::cargo_binary!().ends_with(&ending));
+}
+
+#[test]
+fn reading_stdout_should_work() {
+  let mut command = cli_assert::command!();
+  command.execute();
+  assert_eq!("", command.get_stdout());
+}
+
+#[test]
+fn reading_stderr_should_work() {
+  let mut command = cli_assert::command!();
+  command.execute();
+  assert_eq!("", command.get_stderr());
+}
+
+#[test]
+fn reading_status_should_work() {
+  let mut command = cli_assert::command!();
+  command.execute();
+  assert_eq!(0, command.get_status().code().unwrap());
+}
+
+#[test]
+fn success_assertion_should_fail() {
+  let mut command = cli_assert::command!().success();
+  command.execute();
+}
+
+#[test]
+#[should_panic(expected = "expected failure")]
+fn failure_assertion_should_fail() {
+  let mut command = cli_assert::command!().failure();
+  command.execute();
+}
+
+#[test]
+fn expected_status_code_should_work() {
+  let mut command = cli_assert::command!().code(0);
+  command.execute();
+}
+
+#[test]
+#[should_panic(expected = "\nexpected status code: 1\n  actual status code: 0")]
+fn unexpected_status_code_should_fail() {
+  let mut command = cli_assert::command!().code(1);
+  command.execute();
+}
+
+#[test]
+fn expected_stdout_should_work() {
+  let mut command = cli_assert::command!().stdout("");
+  command.execute();
+}
+
+#[test]
+fn expected_stderr_should_work() {
+  let mut command = cli_assert::command!().stderr("");
+  command.execute();
+}
+
+#[test]
+#[should_panic(expected = "\nexpected stdout: [64]\n  actual stdout: []")]
+fn unexpected_stdout_should_fail() {
+  let mut command = cli_assert::command!().stdout("@");
+  command.execute();
+}
+
+#[test]
+#[should_panic(expected = "\nexpected stderr: [64]\n  actual stderr: []")]
+fn unexpected_stderr_should_fail() {
+  let mut command = cli_assert::command!().stderr("@");
+  command.execute();
+}
+
+#[test]
+fn arguments_should_work() {
+  cli_assert::command!().arg("a").code(1).execute();
+  cli_assert::command!().arg("a").arg("b").code(2).execute();
+  cli_assert::command!().arg("a").arg("b").arg("c").code(3).execute();
+}
