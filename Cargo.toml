@@ -7,8 +7,8 @@ members = [
     "examples/example-002",
     "examples/example-003",
     "examples/example-004",
-    "examples/example-005"
-]
+    "examples/example-005",
+    "examples/example-006"]
 
 [workspace.package]
 version = "0.0.0"
@@ -19,8 +19,8 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-cli-assert = "0.1.7"
-# cli-assert = { path = "../cli-assert" }
+cli-assert = "0.1.8"
+#cli-assert = { path = "../cli-assert" }
 
 [package]
 name = "example-000"
