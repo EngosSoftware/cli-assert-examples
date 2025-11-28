@@ -4,8 +4,11 @@ resolver = "2"
 
 members = [
     "examples/example-001",
-    "examples/example-002"
-    , "examples/example-003", "examples/example-004", "examples/example-005"]
+    "examples/example-002",
+    "examples/example-003",
+    "examples/example-004",
+    "examples/example-005"
+]
 
 [workspace.package]
 version = "0.0.0"
@@ -16,4 +19,17 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-cli-assert = "0.1.1"
+cli-assert = "0.1.7"
+# cli-assert = { path = "../cli-assert" }
+
+[package]
+name = "example-000"
+version.workspace = true
+authors.workspace = true
+repository.workspace = true
+license.workspace = true
+edition.workspace = true
+publish.workspace = true
+
+[dev-dependencies]
+cli-assert = { workspace = true }

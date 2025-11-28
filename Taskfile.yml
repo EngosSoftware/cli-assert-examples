@@ -29,16 +29,28 @@ tasks:
       - cmd: cargo clippy --all-targets --workspace
 
   cov:
-    desc: Generates the code coverage report
+    desc: Generates the code coverage report for cli-assert crate
     cmds:
       - cmd: cargo llvm-cov clean
-      - cmd: cargo llvm-cov --no-cfg-coverage --dep-coverage cli-assert
+      - cmd: cargo llvm-cov --no-cfg-coverage --workspace --dep-coverage cli-assert
 
   cov-html:
-    desc: Generates the code coverage report
+    desc: Generates the code coverage report for cli-assert crate
     cmds:
       - cmd: cargo llvm-cov clean
-      - cmd: cargo llvm-cov --no-cfg-coverage --dep-coverage cli-assert --html --open
+      - cmd: cargo llvm-cov --no-cfg-coverage --workspace --dep-coverage cli-assert --html --open
+
+  cov-local:
+    desc: Generates the code coverage report for cli-assert crate
+    cmds:
+      - cmd: cargo llvm-cov clean
+      - cmd: cargo llvm-cov --no-cfg-coverage --workspace
+
+  cov-local-html:
+    desc: Generates the code coverage report for cli-assert crate
+    cmds:
+      - cmd: cargo llvm-cov clean
+      - cmd: cargo llvm-cov --no-cfg-coverage --workspace --html --open
 
   fmt:
     desc: Runs code formatter

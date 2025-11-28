@@ -48,8 +48,8 @@ fn expected_status_code_should_work() {
   command.execute();
 }
 
+#[should_panic(expected = "unexpected status")]
 #[test]
-#[should_panic(expected = "\nexpected status code: 1\n  actual status code: 0")]
 fn unexpected_status_code_should_fail() {
   let mut command = cli_assert::command!().code(1);
   command.execute();
@@ -67,15 +67,15 @@ fn expected_stderr_should_work() {
   command.execute();
 }
 
+#[should_panic(expected = "unexpected stdout")]
 #[test]
-#[should_panic(expected = "\nexpected stdout: [64]\n  actual stdout: []")]
 fn unexpected_stdout_should_fail() {
   let mut command = cli_assert::command!().stdout("@");
   command.execute();
 }
 
+#[should_panic(expected = "unexpected stderr")]
 #[test]
-#[should_panic(expected = "\nexpected stderr: [64]\n  actual stderr: []")]
 fn unexpected_stderr_should_fail() {
   let mut command = cli_assert::command!().stderr("@");
   command.execute();

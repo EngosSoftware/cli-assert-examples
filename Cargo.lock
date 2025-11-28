@@ -68,9 +68,16 @@ checksum = "b35204fbdc0b3f4446b89fc1ac2cf84a8a68971995d0bf2e925ec7cd960f9cb3"
 
 [[package]]
 name = "cli-assert"
-version = "0.1.1"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "947979916089cd5b05730c2d0f19841013c355aae278187e353c563a271f5e5c"
+checksum = "d373f5993dccb5175463c6436cec197f826f5b492f5b7ae5f942540b253692e1"
+
+[[package]]
+name = "example-000"
+version = "0.0.0"
+dependencies = [
+ "cli-assert",
+]
 
 [[package]]
 name = "example-001"
