@@ -4,7 +4,7 @@ fn starting_server_should_work() {
     .arg("3001")
     .stdout("started server at address 0.0.0.0:3001\n");
   command.spawn();
-  cli_assert::sleep(200);
+  cli_assert::sleep(350);
   command.stop();
   command.wait();
 }
@@ -15,7 +15,7 @@ fn address_in_use_should_work() {
     .arg("3000")
     .stdout("started server at address 0.0.0.0:3000\n");
   server_1.spawn();
-  cli_assert::sleep(200);
+  cli_assert::sleep(350);
 
   cli_assert::command!()
     .arg("3000")
