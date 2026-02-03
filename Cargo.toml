@@ -19,16 +19,17 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-cli-assert = "0.1.11-rc.0"
+cli-assert = "0.1.11-rc.1"
+#cli-assert = { path = "../cli-assert" }
 
 [package]
 name = "example-000"
-version.workspace = true
-authors.workspace = true
-repository.workspace = true
-license.workspace = true
-edition.workspace = true
-publish.workspace = true
+version = { workspace = true }
+authors = { workspace = true }
+repository = { workspace = true }
+license = { workspace = true }
+edition = { workspace = true }
+publish = { workspace = true }
 
 [dev-dependencies]
 cli-assert = { workspace = true }
