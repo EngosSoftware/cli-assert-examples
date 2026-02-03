@@ -19,8 +19,7 @@ edition = "2021"
 publish = false
 
 [workspace.dependencies]
-cli-assert = "0.1.8"
-#cli-assert = { path = "../cli-assert" }
+cli-assert = "0.1.11-rc.0"
 
 [package]
 name = "example-000"

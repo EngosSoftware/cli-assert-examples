@@ -38,7 +38,19 @@ tasks:
     desc: Generates the code coverage report for cli-assert crate
     cmds:
       - cmd: cargo llvm-cov clean
+      - cmd: cargo llvm-cov --no-cfg-coverage --workspace --dep-coverage cli-assert --html
+
+  cov-html-open:
+    desc: Generates the code coverage report for cli-assert crate
+    cmds:
+      - cmd: cargo llvm-cov clean
       - cmd: cargo llvm-cov --no-cfg-coverage --workspace --dep-coverage cli-assert --html --open
+
+  cov-badge:
+    desc: Generates the detailed code coverage badge
+    cmds:
+      - cmd: cargo +stable llvm-cov clean
+      - cmd: cargo +stable llvm-cov --no-cfg-coverage --workspace --dep-coverage cli-assert --json --summary-only | coverio -l coverage -c --tag cov-badge -f ../cli-assert/README.md
 
   cov-local:
     desc: Generates the code coverage report for cli-assert crate
@@ -47,6 +59,12 @@ tasks:
       - cmd: cargo llvm-cov --no-cfg-coverage --workspace
 
   cov-local-html:
+    desc: Generates the code coverage report for cli-assert crate
+    cmds:
+      - cmd: cargo llvm-cov clean
+      - cmd: cargo llvm-cov --no-cfg-coverage --workspace --html
+
+  cov-local-html-open:
     desc: Generates the code coverage report for cli-assert crate
     cmds:
       - cmd: cargo llvm-cov clean
