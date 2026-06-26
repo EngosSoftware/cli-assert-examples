@@ -17,11 +17,11 @@ version = "0.0.0"
 authors = ["Dariusz Depta <depta@engos.de>"]
 repository = "https://github.com/EngosSoftware/cli-assert-examples.git"
 license = "MIT OR Apache-2.0"
-edition = "2021"
+edition = "2024"
 publish = false
 
 [workspace.dependencies]
-cli-assert = "0.1.13-rc.0"
+cli-assert = "0.1.13"
 #cli-assert = { path = "../cli-assert" }
 
 [package]

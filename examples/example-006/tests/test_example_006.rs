@@ -5,7 +5,7 @@ fn cargo_package_should_work() {
 
 #[test]
 fn reading_temporary_file_should_work() {
-  let file = cli_assert::TmpFile::new("text.md");
+  let file = cli_assert::TempFile::new("text.md");
   assert!(file.path().to_string_lossy().ends_with("text.md"));
   let text = "Hello Example-006!";
   file.write(text);
@@ -16,7 +16,7 @@ fn reading_temporary_file_should_work() {
 #[should_panic(expected = "unexpected content")]
 #[test]
 fn asserting_temporary_file_should_fail() {
-  let file = cli_assert::TmpFile::new("text.md");
+  let file = cli_assert::TempFile::new("text.md");
   let text = "Hello Example-006!";
   file.write(text);
   cli_assert::command!().current_dir(file.dir()).stdout(text).execute();
@@ -25,7 +25,7 @@ fn asserting_temporary_file_should_fail() {
 
 #[test]
 fn writing_read_only_temporary_file_should_fail() {
-  let file = cli_assert::TmpFile::new("text.md");
+  let file = cli_assert::TempFile::new("text.md");
   assert!(file.path().to_string_lossy().ends_with("text.md"));
   let text = "Hello Example-006!";
   file.write(text);
